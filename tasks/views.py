@@ -7,6 +7,5 @@ def task_list(request):
         if title:
             Task.objects.create(title=title)
         return redirect('task_list')
-    
     tasks = Task.objects.all()
     return render(request, "tasks/task_list.html", {"tasks": tasks})
