@@ -1,27 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hy">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List</title>
+    <title>Պարտականությունների ցանկ</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f9dada;}
-        .task { padding: 30px; margin: 20px; border: 5px solid #a57a7a;
-                color: rgb(88, 56, 45); border-radius: 10px; font-size: 40px;}
-        .completed { text-decoration: line-through; color: #0f0; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .task {
+            padding: 30px;
+            margin: 20px;
+            border: 5px solid rgb(255, 255, 255);
+            color: rgb(88, 56, 45);
+            border-radius: 10px;
+            font-size: 40px;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #0f0;
+        }
+        ul.list-group {
+            padding-left: 0;
+        }
+        ul.list-group li {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 24px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease-in-out;
+            display: flex; /* Ուշադրություն՝ flex container */
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        ul.list-group li:hover {
+            background-color: #f8f9fa;
+        }
+        .list-group-item-completed {
+            text-decoration: line-through;
+            background-color: #e0e0e0;
+        }
+        /* Կոճակների համար */
+        .btn-group {
+            display: flex;
+            gap: 10px; /* Կոճակների միջև տարածություն */
+        }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Task List</h1>
+    <h1>Պարտականությունների ցանկ</h1>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="title" placeholder="New task" required style="width: 100%; height: 50px; margin-bottom: 20px; text-align: center; font-size: 40px;">
-        <button type="submit" style="width: 500px; height: 50px;">Add</button>
+        <input type="text" name="title" placeholder="Նոր պարտականություն" required style="width: 100%; height: 50px; margin-bottom: 20px; text-align: center; font-size: 40px;">
+        <button type="submit" style="width: 500px; height: 50px;">Ավելացնել</button>
     </form>
-    <ul>
+    <ul class="list-group mt-3">
         {% for task in tasks %}
-            <li class="task {% if task.completed %}completed{% endif %}">
+            <li class="list-group-item {% if task.completed %}text-muted text-decoration-line-through{% endif %}">
                 {{ task.title }}
+                <div class="btn-group">
+                    <a href="{% url 'complete_task' task.id %}" class="btn btn-success btn-sm">Պատրաստ</a>
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Ջնջել</a>
+                    
+                </div>
             </li>
         {% endfor %}
     </ul>
