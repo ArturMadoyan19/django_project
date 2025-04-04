@@ -21,3 +21,15 @@ def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     task.delete()
     return redirect('task_list')
+
+def edit_task(request, task_id):
+    if request.method == "POST":
+        title = request.POST.get("edit_title")
+        if title:
+            task = Task.objects.get(id=task_id)
+            task.title = title
+            task.save()
+    return redirect('task_list')
+
+
+    
