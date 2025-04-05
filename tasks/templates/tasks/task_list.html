@@ -16,13 +16,15 @@
             color: rgb(88, 56, 45);
             border-radius: 10px;
             font-size: 40px;
+            width: 10%;
         }
         .completed {
             text-decoration: line-through;
             color: #0f0;
         }
         ul.list-group {
-            padding-left: 0;
+            padding-left: 20%;
+            padding-right: 20%;
         }
         ul.list-group li {
             margin-bottom: 10px;
@@ -30,7 +32,7 @@
             font-size: 24px;
             border-radius: 8px;
             transition: background-color 0.3s ease-in-out;
-            display: flex; /* Ուշադրություն՝ flex container */
+            display: flex; 
             justify-content: space-between; 
             align-items: center; 
         }
@@ -46,16 +48,39 @@
             gap: 10px; 
             align-items: baseline;
         }
+        .add {
+            width: 500px;
+            height: 50px;
+            border: solid 1px rgb(25 135 84);
+            border-radius: 10px;
+            background-color: rgb(25 135 84);
+            color: rgb(255 255 255);
+
+        }
+        .inp{
+            width: 74%;
+            height: 60px;
+            margin: 15px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 10px;
+            border: solid 1px rgb(25 135 84);
+        }
+        .edit_input{
+            height: 31px;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Պարտականությունների ցանկ</h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="title" placeholder="Նոր պարտականություն" required style="width: 100%; height: 50px; margin-bottom: 20px; text-align: center; font-size: 40px;">
-        <button type="submit" style="width: 500px; height: 50px;">Ավելացնել</button>
-    </form>
+    <div style="display: flex; flex-direction: column;">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Նոր պարտականություն" required class="inp">
+            <button type="submit" class="add">Ավելացնել</button>
+        </form>
+    </div>
     <ul class="list-group mt-3">
         {% for task in tasks %}
             <li class="list-group-item {% if task.completed %}text-muted text-decoration-line-through{% endif %}">
@@ -63,7 +88,7 @@
                 <div class="btn-group">
                     <form method="post" action="{% url 'edit_task' task.id %}">
                         {% csrf_token %}
-                        <input type="text" name="edit_title" placeholder="Edit">
+                        <input type="text" name="edit_title" placeholder="Edit" class="edit_input">
                         <button type="submit" class="btn btn-success btn-sm">Խմբագրել</button>
                     </form>
                     <a href="{% url 'complete_task' task.id %}" class="btn btn-success btn-sm">Պատրաստ</a>
@@ -72,5 +97,9 @@
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'info_view' %}" class="btn btn-outline-info mt-3 d-flex align-items-center gap-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="24" height="24" alt="Gallery">
+        <span>Open Gallery</span>
+    </a>
 </body>
 </html>
