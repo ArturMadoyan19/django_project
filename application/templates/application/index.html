@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
     <title>Index</title>
 </head>
 <body>
-    <h1>This is index</h1>
+    <form method="post" class="log">
+        {% csrf_token %}
+        <input type="text" placeholder="Login" name="login" value="{{ login_value }}">
+        <input type="text" placeholder="Password" name="password" value="{{ password_value }}">
+        <button type="submit">Login</button>
+        {% if success %}
+        <p>success login</p>
+        {% endif %}
+
+        {% if login_value and password_value %}
+        <p>Login: {{ login_value }}</p>
+        <p>Password: {{ password_value }}</p>
+        {% endif %}
+    </form>
 </body>
+</html>
