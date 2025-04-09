@@ -14,13 +14,17 @@
         <input type="text" placeholder="Password" name="password" value="{{ password_value }}">
         <button type="submit">Login</button>
         {% if success %}
+        
         <p>success login</p>
+        <p>Name: {{ login_value }}</p>
+        <p>Surname: {{ surname_value }}</p>
+        <p>Email: {{ email_value }}</p>
+        {% else %}
+        <p>DEBUG: success = {{ success }}</p>
+
+        <p>Write correct login or password</p>
         {% endif %}
 
-        {% if login_value and password_value %}
-        <p>Login: {{ login_value }}</p>
-        <p>Password: {{ password_value }}</p>
-        {% endif %}
     </form>
 </body>
 </html>

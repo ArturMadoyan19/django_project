@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body style="background-color: blueviolet;">
+    <h1>Registration</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Name" name="name" value="{{ name_value }}">
+        <input type="text" placeholder="Surname" name="surname" value="{{ surname_value }}">
+        <input type="email" placeholder="Email" name="email" value="{{ email_value }}">
+        <input type="password" placeholder="Password" name="password" value="{{ password_value }}">
+        <button type="submit">Register</button>
+        {% if name_value and password_value %}
+        <p>name: {{ name_value }}</p>
+        <p>surname: {{ surname_value }}</p>
+        <p>email: {{ email_value }}</p>
+        <p>password: {{ password_value }}</p>
+        {% endif %}
+    </form>
+
+</body>
+</html>
