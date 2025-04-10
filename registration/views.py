@@ -4,12 +4,8 @@ from .models import Reg
 # def index(request):
 #     return render(request, "front/register.html")
 
+
 def user_info(request):
-    # name = ''
-    # surname = ''
-    # email = ''
-    # password = ''
-    
     if request.method == "POST":
         Reg.login = request.POST.get('name', '')
         Reg.surname = request.POST.get('surname', '')

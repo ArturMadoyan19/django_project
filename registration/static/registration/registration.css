@@ -1,0 +1,54 @@
+.reg_info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.inp_info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.inp_info input{
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+    border: solid 1px gray;
+}
+.reg_btn {
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-image: url(image/background.jpg);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    color: white;
+}
+.reg_btn:hover{
+    cursor: pointer;
+    background-color: bisque;
+    transform: scale(1.1);
+    transform: translateY(250px);
+
+}
+
+body {
+    background-image: url(image/background.jpg);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    height: 929px;  
+}
+.inp1:hover{
+    transform: translateY(750px);
+}
+.inp2:hover{
+    transform: translateX(650px);
+}
+.inp3:hover{
+    transform: translateY(650px);
+}
+.inp4:hover{
+    transform: translateX(650px);
+}
+

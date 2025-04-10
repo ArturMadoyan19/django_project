@@ -11,7 +11,7 @@
     <form method="post" class="log">
         {% csrf_token %}
         <input type="text" placeholder="Login" name="login" value="{{ login_value }}">
-        <input type="text" placeholder="Password" name="password" value="{{ password_value }}">
+        <input type="password" placeholder="Password" name="password" value="{{ password_value }}">
         <button type="submit">Login</button>
         {% if success %}
         
